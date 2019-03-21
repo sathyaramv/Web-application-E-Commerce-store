@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Item</title>
+<link rel="stylesheet" type = "text/css" href="/stylesheets/style.css">
+</head>
+<body>
+<% include partials/header.ejs %>
+  <% include partials/user-navigation.ejs %>
+<div id=“content3”>
+<% include partials/site-navigation.ejs %>
+
+<div id="content2">
+<button onclick="location.href='/categories'">Back</button><br>
+<br><br>
+<a  href="/">Home</a> &gt;
+<a  href="/categories">Categories</a> &gt;
+<a  href="/categories/item/<%= data.itemCode %>">Item</a> &gt;
+<br>
+<br><br>
+
+   <img src= "<%= data.imageURL %>" alt="<%= data.imageName %>">
+   
+   
+   
+   <p>
+        Item : <%= data.itemName %>
+    </p>
+	  <p>Category :<%= data.catalogCategory %> </p>
+
+   <div><br>
+           <button onclick="window.location.href = '/myItems/<%= data.itemCode %>'">Save It</button>
+		   <button onclick="window.location.href = '/feedback/<%= data.itemCode %>'">Rate It</button>
+
+     <p>
+        <%= data.description %>
+    </p>
+   </div>
+
+  <p>Rating : <%= data.rating %> </p>
+
+
+</div>
+</div>
+<% include partials/footer.ejs %>
+
+</body>
+</html>

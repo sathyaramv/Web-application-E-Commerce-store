@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Items</title>
+<link rel="stylesheet" type = "text/css" href="/stylesheets/style.css">
+</head>
+<body>
+<% include ./partials/header.ejs %>
+<% include ./partials/user-navigation.ejs %>
+<main>
+<button onclick="location.href='/categories/item/<%= data.itemCode %>'">Back</button><br>
+
+
+
+  <h2>Listing </h2>
+  <table class='myitems'>
+  <thead>
+  <tr>
+    <th>Item</th>
+    <th>Category</th>
+    <th>Rating</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Apple Pie</td>
+      <td>Non-Fat Yogurt Flavors</td>
+      <td>&bigstar;&bigstar;</td>
+      <td>
+        <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
+        <a href="#" class="delete btn">Delete</a>
+      </td>
+    </tr>
+	
+	<tr>
+      <td>Blue Cotton Candy</td>
+      <td>Non-Fat Yogurt Flavors</td>
+      <td>&bigstar;</td>
+      <td>
+        <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
+        <a href="#" class="delete btn">Delete</a>
+      </td>
+    </tr>
+	
+	
+	<tr>
+      <td>Cappuccino</td>
+      <td>Non-Fat Yogurt Flavors</td>
+      <td>&bigstar;&bigstar;&bigstar;</td>
+      <td>
+        <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
+        <a href="#" class="delete btn">Delete</a>
+      </td>
+    </tr>
+	
+	
+    <tr>
+      <td>Birthday Cake</td>
+      <td>Low-Fat Yogurt Flavors</td>
+      <td>&bigstar;&bigstar;&bigstar;&bigstar;</td>
+      <td> <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
+        <a href="#" class="delete btn">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  
+</main>
+<% include ./partials/site-navigation.ejs %>
+<% include ./partials/footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swapping</title>
+    <link rel="stylesheet" type="text/css" href='/stylesheets/style.css'/>
+</head>
+<body>
+  <% include partials/header.ejs %>
+  <% include partials/user-navigation.ejs %>
+
+<div id=“content3”>
+<% include partials/site-navigation.ejs %>
+
+<button onclick="location.href='/categories/item/<%= item.itemId %>'">Back</button><br>
+<br><br>
+<a  href="/">Home</a> &gt;
+<a  href="/categories">Categories</a> &gt;
+<a  href="/categories/item/<%= data.itemCode %>">Item</a> &gt;
+<br><br>
+   <img src= "<%= data.imageURL %>" alt="<%= data.itemName%>">
+   <br><br>
+   <%= data.itemName%><br>
+   <%= data.catalogCategory %>
+   <br>
+   <%= data.description%><br>
+
+<br>
+ 
+
+ <br><br><br>
+ <div class="dropdown">
+  <button class="dropbtn">Rate</button>
+  <div class="dropdown-content">
+    <a href="#">5</a>
+    <a href="#">4</a>
+    <a href="#">3</a>
+	<a href="#">2</a>
+    <a href="#">1</a>
+  </div>
+  
+  
+</div>
+
+
+
+<br><br><br><br>
+<% include partials/footer.ejs %>
+</div>
+</body>
+</html>
+
