@@ -1,0 +1,132 @@
+//script to create database,collections and insert data into same
+
+//create database
+
+use sathya
+
+
+//create collections
+
+db.createCollection('userData');
+db.createCollection('itemsData');
+db.createCollection('UserItemData');
+
+
+
+
+show collections
+
+
+
+//userdata
+
+
+db.userData.insert([
+{ "userId" : 1, "firstName" : "Sathya", "lastName" : "V", "email" : "svenka19@uncc.edu", "address1" : "University Terrace, Graduate Drive", "address2" : "", "city" : "Charlotte", "state" : "North Carolina", "zip" : "28262", "country" : "United States","password" :"28262", "__v" : 0 }
+]);
+
+
+//item collection
+
+
+db.itemsData.insert([
+{
+      "itemCode": "1",
+      "itemName": "Apple pie",
+      "catalogCategory": "Non-Fat Yogurt Flavors",
+      "description": "Apple Pie :Taste a new twist on a time-honored classic. we’ve transformed everyone’s favorite all-american pie into a       sweet frozen treat ",
+      "rating":"3",
+      "imageUrl":"./images/applie_pie.jpg"
+    },
+    {
+      "itemCode": "2",
+      "itemName": "Blue Cotton Candy",
+      "catalogCategory": "Non-Fat Yogurt Flavors",
+      "description": " Blue Cotton Candy : Our super-sweet blue cotton candy is a funhouse of flavor that melts in your mouth",
+      "rating":"4",
+      "imageUrl":"./images/blue_candy.jpg"
+    },
+    {
+      "itemCode": "3",
+      "itemName": "Cappucino",
+      "catalogCategory": "Non-Fat Yogurt Flavors",
+      "description": " Cappuccino:  Our cappuccino is a perky pick-me-up thanks to the java jolt of real espresso in our recipe ",
+      "rating":"4",
+      "imageUrl":"./images/cappuccino.jpg"
+    },
+    {
+      "itemCode": "4",
+      "itemName": "Birthday Cake",
+      "catalogCategory": "Low-Fat Yogurt Flavors",
+      "description": "Birthday Cake: Blow out the candles, it's your big day! our birthday cake flavor makes any day special! ",
+      "rating":"5",
+       "imageUrl":"./images/bday_cake.jpg"
+    },
+    {
+     "itemCode": "5",
+      "itemName": "Chocolate",
+      "categoryCategory": "Low-Fat Yogurt Flavors",
+      "description": " Chocolate : You’ll wanna sit down for this one. our triple chocolate are moist, thick and worth savoring ",
+      "rating":"3",
+      "imageUrl":"./images/chocolate.jpg"
+    },
+    {
+      "itemCode": "6",
+      "itemName": "Cookies & Cream",
+      "catalogCategory": "Low-Fat Yogurt Flavors",
+      "description": "Cookies and Cream: Delicious cream coupled with decadent chocolate cookies make one savory combi ",
+      "rating":"4",
+      "imageUrl": "./images/cookiescream.jpg"
+    }
+
+    
+]);
+
+
+
+
+//user items collection
+
+db.userItemData.insert([
+{
+      "userId" : "1",
+         item: {"itemCode": "1","itemName": "Apple pie","catalogCategory": "Non-Fat Yogurt Flavors","description": "Apple Pie :Taste a new twist on a time-honored classic. we’ve transformed          everyone’s favorite all-american pie into a sweet frozen treat   ","rating":"3","imageUrl":"./images/applie_pie.jpg" },
+        rating :"5",
+        madeIt : "True"
+    },
+    {
+      "userId" : "1",
+      item : {
+      "itemCode": "2",
+      "itemName": "Blue Cotton Candy",
+      "catalogCategory": "Non-Fat Yogurt Flavors",
+      "description": " Blue Cotton Candy : Our super-sweet blue cotton candy is a funhouse of flavor that melts in your mouth : ",
+      "rating":"4",
+      "imageUrl":"./images/blue_candy.jpg"
+             },
+	rating : "4",
+	madeIt : "False"
+    },
+
+   {
+      "userId" : "1",
+      item : {
+      "itemCode": "3",
+      "itemName": "Cappuccino",
+      "catalogCategory": "Non-Fat Yogurt Flavors",
+      "description": " Cappuccino:  Our cappuccino is a perky pick-me-up thanks to the java jolt of real espresso in our recipe  ",
+      "rating":"4",
+      "imageUrl":"./images/blue_candy.jpg"
+             },
+	rating : "4",
+	madeIt : "False"
+    }
+    
+    
+]);
+
+
+
+
+
+
