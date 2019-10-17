@@ -1,5 +1,20 @@
   <nav>
-  <a  href=index>Sign In</a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a  href="/myitems/1">My Choices</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a  href=index>Cart</a> 
+  <a  href="/categories">Flavors</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <% if(username.length !== 0){%>
+          <a href="myitems">My orders</a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <%}else {%>
+	<a href="signin">My orders</a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<%}%>
   </nav>
+
+<div class="signInSection">
+<% if(username.length !== 0){%>
+<span class="login">Welcome, <%=username%></span> &nbsp;
+          <a href="/signOut">Sign Out</a>
+        <%}else{%>
+          <a href="/signin">Sign In</a>
+        <%}%>
+		
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title> Niner's Creamery & Frozen Yogurt</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+	<% include partials/header.ejs %>
+	<% include partials/user-navigation.ejs %>
+
+<section id="show1">
+	<div id="show2">
+		<div class="ver1">
+			<% include partials/site-navigation.ejs %>
+		</div>
+		<div class="ver2">
+           
+    <main>
+
+      <p><b>Please Login</b></p>
+	  <%if(!flag){%>
+      <p>Either password or mail id is wrong </p>
+	  <%}%>
+	  <br>
+      <form action="/signin" method='post'>
+
+<label for="email" class="writing">E-mail id:</label><br>
+<input type="text" name="emailid" required/>
+<br>
+<label for="password" class="writing">Password:</label><br>
+<input type="password" name="password" required/>
+<br><br>
+<input type="submit" class="writing" value="Sign in">
+</form>
+<br>
+
+ </section>
+	<% include partials/footer.ejs %>
+</body>
+</html>

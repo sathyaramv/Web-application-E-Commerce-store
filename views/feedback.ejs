@@ -1,52 +1,84 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swapping</title>
-    <link rel="stylesheet" type="text/css" href='/stylesheets/style.css'/>
-</head>
-<body>
-  <% include partials/header.ejs %>
-  <% include partials/user-navigation.ejs %>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> Feedback </title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <% include partials/header.ejs %>
+    <% include partials/user-navigation.ejs %>
 
-<div id=“content3”>
-<% include partials/site-navigation.ejs %>
+    <section id="show1">
+      <div id="show2">
+      <div class="ver1">
+        <% include partials/site-navigation.ejs %>
+      </div>
+      <div class="ver2">
+        <p ><a href="index">Home</a>> <a href="categories">Category</a> > Items</p> <br>
+		
+		<p> <b> Feedback </b></p><br><br>
+        <div class="img">
+          <div class="img1">
+            <img class="image" src=<%= item.imageUrl %> alt="<%= item.itemName %>">
+        </div>
+        <div class="para1">
+          <p><%= item.itemName %></p>
+          <p id="par2"><%= item.catalogCategory %></p>
+          <p><%=  item.description   %></p>
 
-<button onclick="location.href='/categories/item/<%= item.itemId %>'">Back</button><br>
-<br><br>
-<a  href="/">Home</a> &gt;
-<a  href="/categories">Categories</a> &gt;
-<a  href="/categories/item/<%= data.itemCode %>">Item</a> &gt;
-<br><br>
-   <img src= "<%= data.imageURL %>" alt="<%= data.itemName%>">
-   <br><br>
-   <%= data.itemName%><br>
-   <%= data.catalogCategory %>
-   <br>
-   <%= data.description%><br>
 
-<br>
- 
+          <form class="rateForm" method="post" action="/update">
+             <input type="hidden" name = "itemCode" value = "<%= item.itemCode  %>">
+                          <table>
+                            <tr>
+                              <td>
+                                <label for="name">Rate: </label>
 
- <br><br><br>
- <div class="dropdown">
-  <button class="dropbtn">Rate</button>
-  <div class="dropdown-content">
-    <a href="#">5</a>
-    <a href="#">4</a>
-    <a href="#">3</a>
-	<a href="#">2</a>
-    <a href="#">1</a>
+                                <select class="ratingOptions" name="rating">
+                                  <option value="<%= rating %>"><%= rating %></option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Star</option>
+                                <option value="3">3 Star</option>
+                                <option value="4">4 Star</option>
+                                <option value="5">5 Star</option>
+                                </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                              </td>
+                              <td>
+                                <div class="radOptions">
+                                <span>Made It? </span>
+                                <%
+                                  var options =["true","false"];;
+                                  for(var j =0; j< options.length; j++){
+                                    var checked = (madeIt == options[j]) ? "checked":"";
+                                    %>
+                                      <input type="radio" name="madeIt" id="<%=options[j]%>" value="<%=options[j]%>" <%=checked%> >
+                                      <label for="<%=options[j]%>"><%=options[j]%></label>
+                                    <%
+                                  }
+                                %>
+                              </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <a href="/myItems">
+                                  <button type="button" name="cancel">Cancel</button>
+                                </a>
+                              </td>
+                              <td><button type="submit">Confirm</button></td>
+                            </tr>
+                          </table>
+                        </form>
+
+      </div>
+
+    </div>
   </div>
-  
-  
 </div>
-
-
-
-<br><br><br><br>
-<% include partials/footer.ejs %>
-</div>
-</body>
+    </section>
+      <% include partials/footer.ejs %>
+  </body>
 </html>
-

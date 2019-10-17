@@ -1,50 +1,106 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Item</title>
-<link rel="stylesheet" type = "text/css" href="/stylesheets/style.css">
-</head>
-<body>
-<% include partials/header.ejs %>
-  <% include partials/user-navigation.ejs %>
-<div id=“content3”>
-<% include partials/site-navigation.ejs %>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> Item </title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <% include partials/header.ejs %>
 
-<div id="content2">
-<button onclick="location.href='/categories'">Back</button><br>
-<br><br>
-<a  href="/">Home</a> &gt;
-<a  href="/categories">Categories</a> &gt;
-<a  href="/categories/item/<%= data.itemCode %>">Item</a> &gt;
-<br>
-<br><br>
-
-   <img src= "<%= data.imageURL %>" alt="<%= data.imageName %>">
-   
-   
-   
-   <p>
-        Item : <%= data.itemName %>
-    </p>
-	  <p>Category :<%= data.catalogCategory %> </p>
-
-   <div><br>
-           <button onclick="window.location.href = '/myItems/<%= data.itemCode %>'">Save It</button>
-		   <button onclick="window.location.href = '/feedback/<%= data.itemCode %>'">Rate It</button>
-
-     <p>
-        <%= data.description %>
-    </p>
-   </div>
-
-  <p>Rating : <%= data.rating %> </p>
+    <% include partials/user-navigation.ejs %>
 
 
-</div>
-</div>
-<% include partials/footer.ejs %>
+    <section id="show1">
+      <div id="show2">
+      <div class="ver1">
+        <% include partials/site-navigation.ejs %>
+      </div>
+      <div class="ver2">
+	            
 
-</body>
+	    
+        <p id="nv"><a href="/index">Home</a>> <a href="/categories">Category</a>> Items</p>
+        <form class="back" action="/categories" method="get">
+          <input type="submit" name="back" value="back"><br>
+
+        </form>
+        <div class="img">
+          <div class="img1">
+		
+		   <% if( item.itemCode == 1){%>
+						  		 <img src="https://i.ibb.co/qMs5LRc/applie-pie.jpg" alt="applie-pie" >
+
+                          <%}else if( item.itemCode==2) {%>
+						  
+                                <img src="https://i.ibb.co/3BkDDV3/blue-candy.jpg" alt="bday-cake" border="0">
+								
+								
+                                        <%} 
+										else if( item.itemCode==3) {%>
+                                       <img src="https://i.ibb.co/0Jmg64h/Cappuccino.jpg" alt="blue-candy" border="0"> 
+
+                                       <%} 
+										else if( item.itemCode==4) {%>
+                                       <img src="https://i.ibb.co/KXpbG7R/bday-cake.jpg" alt="Birthday cake" border="0"> 
+
+                                       <%} 
+										else if( item.itemCode==5) {%>
+
+
+<img src="https://i.ibb.co/CV2ZP8Z/chocolate.jpg" alt="chocolate" border="0">								   
+<%} 
+										
+										else {%>
+										
+                                      <img src="https://i.ibb.co/tQwLg3v/cookiescream.jpg" alt="cookiescream" border="0">										<%} %>
+		
+            <!-- <img class="image" src="<%= item.imageUrl %>" alt="<%= item.imageUrl %>"> -->
+          <!--<img src="./images/upperbody.jpeg" alt="Upperbody">-->
+        </div>
+        <div class="para1">
+          <p><%= item.itemName %></p>
+          <p id="par2"><%= item.catalogCategory %></p>
+            <% if(username.length !== 0){%>
+                          <div class="upp1">
+                            <div class="rate">
+                              <a href="<%= '/feedback?itemCode='+item.itemCode%>">
+                                <button type="button" name="rateButton">Rate</button> <br>
+                              </a>
+                            </div>
+                            <div class="save">
+                              <a href="<%= '/myItems?action=save&itemCode='+item.itemCode%>">
+                                <button type="submit" name="button">Save</button>
+                              </a>
+                            </div>
+                          </div>
+                          <%}else{%>
+                            <div class="upp1">
+                                            <blink><span>Login to perform actions on this item!!</span></blink>
+                                          </div>
+                                        <%}%>
+
+          </form>
+          <%  for(var j=0; j< 5; j++){
+                      if(j < item.rating){%>
+                        <span class="fa fa-star checked"></span>
+                      <%}else{%>
+                        <span class="fa fa-star unChecked"></span>
+                      <%}
+                    }   %>
+
+        </div>
+      </div>
+      <div class="para2">
+        <p>
+          <%= item.description %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+    </section>
+      <% include partials/footer.ejs %>
+  </body>
 </html>

@@ -1,7 +1,9 @@
-<link rel="stylesheet" type="text/css" media="screen" href='/stylesheets/style.css'/>
-<div id="head">
-<p class="top">Not Signed In </p>
-<div id="heading">   <h1>        <img src='/images/logo.jpg' alt='logo'>  Niner's creamery and Frozen Yogurt</h1></div>
-</div>
-
-  
+    <header>
+          <% if(username.length !== 0){%>
+      
+      <%} else{%>
+	  
+        <span class="login">Not Logged in</span>
+        <%}%>
+         <center> <h1>Niner's Creamery & Frozen Yogurt</h1>
+    </header>

@@ -1,46 +1,49 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Niner's Creamery & Frozen Yogurts</title>
-<link rel="stylesheet" type = "text/css" href="/stylesheets/style.css">
-</head>
-<body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> Categories </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <% include partials/header.ejs %>
+    <% include partials/user-navigation.ejs %>
 
-<% include ./partials/header.ejs %>
-
-<% include ./partials/user-navigation.ejs %>
-<% include ./partials/site-navigation.ejs %>
-
-<div id="content2">
-
-<button onclick="location.href='/'">Back</button><br>
-  <%
-  for(var i=0; i<data.categories.length; i++){ %>
-      <table class="cat-table">
-          <thead>
-              <tr>
-                  <th class="cat-heading"><%= data.categories[i] %></th>
-              </tr>
-          </thead>
-          <tbody>
-              <%
-              for(var j=0; j<data.items.length;j++){
-                  if(data.categories[i] === data.items[j].catalogCategory){ %>
-                  <tr>
-                      <td class="cat-items"><a href="/categories/item/<%= data.items[j].itemCode %>"><%= data.items[j].itemName %></a></td>
-                  </tr>
-                 <% }
-              }
-               %>
-
-
-          </tbody>
+    <section id="show1">
+      <div id="show2">
+      <div class="ver1">
+        <% include partials/site-navigation.ejs %>
+      </div>
+      <div class="ver2">
+        <p><a href="index">Home</a>> Categories</p>
+		<br><br>
 		
-      </table>
-      <% }%>
+		
+		
+	  <br>
+		
+		
+		
+		
+		
+        <%
+           for(var i = 0;i< data.list.length;i++) {%>
 
-</div><% include ./partials/footer.ejs %>
-</body>
+             <p><%=data.list[i] %> :</p>
+                        <ul>
+                          <% for(var j = 0; j< data.items.length; j++ ){
+                            if(data.list[i] == data.items[j].catalogCategory){%>
+                             <a href="../categories/item/<%= data.items[j].itemCode%>"><%= data.items[j].itemName%></a> <br> <br>
+                            <%	}} %>
+
+
+                    </ul>
+                    <%	} %>
+      </div>
+    </div>
+    </section>
+    <% include partials/footer.ejs %>
+  </body>
 </html>

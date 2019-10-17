@@ -1,75 +1,99 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Items</title>
-<link rel="stylesheet" type = "text/css" href="/stylesheets/style.css">
-</head>
-<body>
-<% include ./partials/header.ejs %>
-<% include ./partials/user-navigation.ejs %>
-<main>
-<button onclick="location.href='/categories/item/<%= data.itemCode %>'">Back</button><br>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>My Items</title>
+   <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <% include partials/header.ejs %>
+    <% include partials/user-navigation.ejs %>
 
 
+    <section id="show1">
+      <div id="show2">
+      <div class="ver1">
+        <% include partials/site-navigation.ejs %>
+      </div>
+      <div class="ver2">
+        <p id="nv"><a href="index">Home</a>> My items</p> <br>
+        <table>
+            <tr>
+                 <th>Item</th>
+                 <th>Categories</th>
+                 <th>My Rating</th>
+                 <th>Made It</th>
+                 <th>Actions</th>
+            </tr>
+            <%    if(userItems.length == 0){ %>
+                  <tr>
+                    <td colspan="10" ><input type='text' name='noItemsMessage' value='No items Chosen yet, Please select' readonly size = "30"></td>
+                  </tr>
+            <%    } else {   %>
+              <% for (var i=0;i< userItems.length;i++)
+                               {%>
+            <tr>
+                 <td><a href="<%='/categories/item/'+userItems[i].item.itemCode%>"><%= userItems[i].item.itemName %></a></td>
+                 <td>
+				 
+				 <% if( userItems[i].item.itemCode == 5){%>
+						  		 <p> Non- Fat Yogurt Flavors </p>
 
-  <h2>Listing </h2>
-  <table class='myitems'>
-  <thead>
-  <tr>
-    <th>Item</th>
-    <th>Category</th>
-    <th>Rating</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Apple Pie</td>
-      <td>Non-Fat Yogurt Flavors</td>
-      <td>&bigstar;&bigstar;</td>
-      <td>
-        <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
-        <a href="#" class="delete btn">Delete</a>
-      </td>
-    </tr>
-	
-	<tr>
-      <td>Blue Cotton Candy</td>
-      <td>Non-Fat Yogurt Flavors</td>
-      <td>&bigstar;</td>
-      <td>
-        <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
-        <a href="#" class="delete btn">Delete</a>
-      </td>
-    </tr>
-	
-	
-	<tr>
-      <td>Cappuccino</td>
-      <td>Non-Fat Yogurt Flavors</td>
-      <td>&bigstar;&bigstar;&bigstar;</td>
-      <td>
-        <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
-        <a href="#" class="delete btn">Delete</a>
-      </td>
-    </tr>
-	
-	
-    <tr>
-      <td>Birthday Cake</td>
-      <td>Low-Fat Yogurt Flavors</td>
-      <td>&bigstar;&bigstar;&bigstar;&bigstar;</td>
-      <td> <a href="/categories/item/<%= data.itemCode %>" class="update btn">Update</a>
-        <a href="#" class="delete btn">Delete</a>
-      </td>
-    </tr>
-  </tbody>
-  </table>
-  
-</main>
-<% include ./partials/site-navigation.ejs %>
-<% include ./partials/footer.ejs %>
-</body>
+                          <%}else {%>
+						   <%= userItems[i].item.catalogCategory %>
+								
+								
+                                        <%} %>
+				 
+				</td>
+                 <td>
+                   <div style="font-size:15px;">
+                     <%for(var j =0; j< 5; j++){
+                    if(j < userItems[i].rating){%>
+                      <span class="fa fa-star checked"></span>
+                    <%}else{%>
+                        <span class="fa fa-star unChecked"></span>
+                    <%} }%>
+                  </div>
+           </td>
+            <td>
+                   <% if(userItems[i].madeIt=="true"){  %>
+              <p>   <i id="thumbs" class="fa fa-thumbs-up"></i></p>
+               <%   }else{  %>
+                   <p> <i id="thumbs2" class="fa fa-thumbs-down"></i> <p>
+               <%   }   %>
+            </td>
+              <td>
+                <div class="actions">
+                  <%for(var k=0;k < userItems.length; k++){
+                    if(userItems[k].item.itemCode != userItems[i].item.itemCode){%>
+                      <input type="hidden" name="hiddenItemList" value="<%= userItems[k].item.itemCode%>">
+                    <%}
+                  }%>
+                  <input type="hidden" name="hiddenItemCode" value="<%= userItems[i].item.itemCode%>">
+                  <div class="update">
+                    <a class="" href="<%='/feedback?action=update&itemCode='+userItems[i].item.itemCode%>">
+                      <button type="submit" name="button">Update</button>
+                    </a>
+                  </div>
+                  <div class="delete">
+                    <a class="" href="<%='/myItems?action=delete&itemCode='+userItems[i].item.itemCode%>">
+                      <button type="submit" name="button">Delete</button>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <%   }   %>
+
+        <%    }   %>
+
+            </table><br><br>
+      </div>
+    </div>
+    </section>
+  <% include partials/footer.ejs %>
+  </body>
 </html>

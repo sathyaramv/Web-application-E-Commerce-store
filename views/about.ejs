@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-<title> About </title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href='/stylesheets/style.css'/>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title> Niner's Creamery & Frozen Yogurt</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
-
 <body>
+	<% include partials/header.ejs %>
+	<% include partials/user-navigation.ejs %>
 
-   <% include ./partials/header.ejs %>
-   <% include ./partials/user-navigation.ejs %>
-   <% include ./partials/site-navigation.ejs %>
-   <div id=content2>
-     <h1><b>About Us</b></h1>
+<section id="show1">
+	<div id="show2">
+		<div class="ver1">
+			<% include partials/site-navigation.ejs %>
+		</div>
+		<div class="ver2">
+           <h1><b>About Us</b></h1>
 
  <br>Our goal is also to create the best frozen yogurt experience you've ever had! You create your own combination of delicious, soft-serve premium frozen yogurt, then finish it off with any toppings you choose. <br>
                         <br>Our toppings bar is stocked fresh every day with the best ingredients for a light snack, a decadent dessert, and everything in between.You pick the flavors,you add the toppings,you make it your way!
@@ -24,8 +26,9 @@
                         <br><br>Our cows are never treated with the growth hormone rBST and our local farmers are committed to animal welfare and environmental stewardship.
                         <br><br>In addition to milk we offer a full line of delicious, local dairy products including sour cream, cottage cheese, ice cream, butter and more. That’s why when it comes to feeding your family the choice is clear. <br>
                     </p>
+		</div>
    </div>
-  <% include ./partials/footer.ejs %>
-
+ </section>
+	<% include partials/footer.ejs %>
 </body>
 </html>
