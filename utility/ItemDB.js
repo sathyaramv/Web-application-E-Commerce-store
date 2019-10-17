@@ -1,88 +1,50 @@
-var Item = require('../model/Item');
+var express = require('express');
+var app = express();
+var itemModel = require('../models/Item.js');
+var mongoose = require('mongoose');
 
-module.exports.getItems = function () {
-    let items = [];
-    for (let i = 0; i < data.length; i++) {
-        let item = new Item(data[i].itemCode,data[i].itemName,data[i].catalogCategory,data[i].description,data[i].rating,data[i].imgUrl);
-			items.push(item);
-    }
-    return items;
+mongoose.connect('mongodb://localhost:27017/sathya',{ useNewUrlParser: true },function(err){
+  if(err) throw err;
+  console.log("Successfully connected!!");
+});
+
+var itemsSchema = mongoose.Schema({
+
+  itemCode:{type:String, required:true, unique: true},
+  itemName:String,
+  catalogCategory:String,
+  description:String,
+  rating:String,
+  imageUrl:String
+},{collection:'itemsData'});
+
+var items = mongoose.model('itemsData', itemsSchema);
+
+exports.getItems = async function(){
+  console.log("in getItems...");
+  return await items.find();
 };
 
-module.exports.getItem = function (itemCode) {
-    console.info("from DB, Item code :" + itemCode)
-    for (var i = 0; i < data.length; i++) {
-          console.log("Data" + JSON.stringify(data[i].imgUrl));
-        if (parseInt(data[i].itemCode) == itemCode) {
-        let item = new Item(data[i].itemCode,data[i].itemName,data[i].catalogCategory,data[i].description,data[i].rating,data[i].imgUrl);
-          console.log("Item"+JSON.stringify(item));
-          return item;
+
+exports.getItem = async function(itemCode){
+  console.log("in getItems ...",itemCode);
+  return await items.find({'itemCode':itemCode});
+}
+
+exports.getCategories = async function(){
+  console.log("in categories...");
+  var listOfCategories = [];
+  await items.find(function(err,data){
+    if(err){
+      throw err;
+    }else{
+      data.forEach(function(item){
+        if(!listOfCategories.includes(item.catalogCategory)){
+          listOfCategories.push(item.catalogCategory);
         }
+      });
     }
-};
-
-var data = [
-  {
-    itemCode: 1,
-    itemName: "Apple Pie",
-    catalogCategory: "Non-Fat Yogurt Flavors",
-	
-   description: " 1) Apple Pie :Taste a new twist on a time-honored classic. we’ve transformed everyone’s favorite all-american pie into a sweet frozen treat :",
-  
-  rating: 1.5,
-    imgUrl: "/images/applie_pie.jpg"
-  },
-  {
-    itemCode: 2,
-    itemName: " Blue Cotton Candy",
-    catalogCategory: "Non-Fat Yogurt Flavors",
-	
-
-    description: "2) Blue Cotton Candy : Our super-sweet blue cotton candy is a funhouse of flavor that melts in your mouth : ",
-    rating: 5,
-    imgUrl: "/images/blue_candy.jpg"
-  },
-  {
-    itemCode: 3,
-    itemName: "Cappuccino",
-    catalogCategory: "Non-Fat Yogurt Flavors",
- 
-    description:"3) Cappuccino:  Our cappuccino is a perky pick-me-up thanks to the java jolt of real espresso in our recipe :",
-    rating: 5,
-
-	imgUrl: "/images/cappuccino.jpg"
-  },
-  {
-    itemCode: 4,
-    itemName: "Birthday Cake",
-    catalogCategory: "Low-Fat Yogurt Flavors",
-	
-
-    description: "4) Birthday Cake: Blow out the candles, it's your big day! our birthday cake flavor makes any day special! :",
-    rating: 5,
-    imgUrl: "/images/bday_cake.jpg"
-  },
-  {
-    itemCode: 5,
-    itemName: "Chocolate",
-    catalogCategory: "Low-Fat Yogurt Flavors",
-	
-
-	
-    description: "5) Chocolate : You’ll wanna sit down for this one. our triple chocolate are moist, thick and worth savoring :",
-    rating: 5,
-    imgUrl: "/images/chocolate.jpg"
-  },
-  {
-    itemCode: 6,
-    itemName: "Cookies & Cream" ,
-    catalogCategory: "Low-Fat Yogurt Flavors",
-	
-
-    description: "6) Cookies and Cream: Delicious cream coupled with decadent chocolate cookies make one savory combi : ",
-    rating: 5,
-    imgUrl: "/images/cookiescream.jpg"
-  }
-];
-
-var category = ["Low-Fat Yogurt Flavors", "Low-Fat Yogurt Flavors"];
+  });
+  console.log(listOfCategories);
+  return listOfCategories;
+}
